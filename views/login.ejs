@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            * { margin: 0; padding:0; }
+            
+            html, body { width:100%; height: 100%; }
+
+            a {
+                text-decoration: none;
+                font-size: 0.6em;
+                color: #337ab7;
+            }
+            .container--login {
+                position: relative;
+                width:100%;
+                height: 100%;
+                background: #cccccc;
+            }
+
+            .form--login {
+                position: absolute;
+                left:10%;
+                right:10%;
+                top:20%;
+                bottom:30%;
+                background: #ffffff;
+            }
+
+            .form--login__header, .form--login__content {
+                width:60%;
+                margin: 0 auto;
+                margin-top:20px;
+                margin-bottom: 10px;
+            }
+
+            .form--login__header {
+                text-align: left;
+            }
+
+            .form--input > input  {
+                width:100%;
+                padding:4px 10px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
+
+            .form--text {
+                font-size: 0.6em;
+                margin-bottom: 10px;
+            }
+
+            .form--button > input {
+                width:100%;
+                background: #337ab7;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                border: none;
+                padding:8px;
+                color:#ffffff;
+            }
+
+            label[for="remember"] {
+                position: relative;
+                top:-1.6px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <div class="container--login">
+            <div class="form--login">
+                <div class="form--login__header">
+                    <h2>Sign in</h2> 
+                    <a href="#">create an account</a>
+                </div>
+
+                <div class="form--login__content">
+                    <form action="login" method="post">
+                        <div class="form--input">
+                            <input type="text" name="userid" placeholder="아이디"/>
+                        </div>
+
+                        <div class="form--input">
+                            <input type="password" name="password" placeholder="비밀번호"/>
+                        </div>
+                        
+                        <div class="form--text">
+                            <input type="checkbox" id="remember"/><label for="remember">Remember me</label>
+                        </div>
+                        
+                        <div class="form--button">
+                            <input type="submit" value="Sign in"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
