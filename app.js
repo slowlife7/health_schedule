@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const path = require("path");
+const fs = require('fs');
+const https = require('https');
 
 const indexRouter = require("./route/index");
 const loginRouter = require("./route/login");
@@ -41,8 +43,13 @@ app.use("/login", loginRouter);
 app.use(ErrorHandler);
 app.use(CatchError);
 
-app.listen(7001, function() {
-  console.log("app listening on port 3000!");
+const ssl_option = {
+        key : fs.readFileSync('/home/node/ssl/privkey.pem'),
+        cert : fs.readFileSync('/home/node/ssl/cert.pem')
+};
+
+https.createServer(ssl_option, app).listen(7002, function() {
+  console.log("app listening on port 7002!");
 });
 
 function FaviconHandler(req, res, next) {
