@@ -1,0 +1,131 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "굴림", gulim, helvetica, "나눔바른고딕 옛한글",
+          "NanumBarunGothic YetHangul", "새굴림", sans-serif;
+        color: #000;
+      }
+      .calendar {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 20px;
+      }
+      .calendar--nav {
+        width: 99.4%;
+        height: 50px;
+        line-height: 50px;
+        box-sizing: border-box;
+        border: 1px solid #eaedef;
+      }
+      .calendar--content {
+        box-sizing: border-box;
+        width: 100%;
+      }
+
+      .calendar--month {
+      }
+      .calendar--month__title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #3c4043;
+        text-align: center;
+      }
+
+      .calendar--week {
+        font-size: 14px;
+        font-family: Tahoma;
+        color: #474747;
+      }
+      .calendar--week__title {
+        background-color: #f8f8f8;
+        float: left;
+        width: 14.2%;
+        padding-bottom: 2.3%;
+
+        box-sizing: border-box;
+      }
+      .calendar--week__title:last-child {
+        border-right: 1px solid #eaedef;
+      }
+
+      .calendar--week__text {
+        margin-top: 5px;
+        margin-left: 5px;
+      }
+
+      .calendar--day {
+        float: left;
+        width: 14.2%;
+        padding-bottom: 7.1%;
+        border-left: 1px solid #eaedef;
+        border-bottom: 1px solid #eaedef;
+        box-sizing: border-box;
+      }
+
+      .calendar--day__text {
+        margin-top: 5px;
+        margin-left: 5px;
+      }
+
+      .calendar--day:nth-child(7n) {
+        border-right: 1px solid #eaedef;
+      }
+
+      .calendar--day__off {
+        color: #f44e4e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calendar">
+      <div class="calendar--nav">
+        <div class="calendar--month">
+          <div class="calendar--month__title"><%= title %></div>
+        </div>
+      </div>
+
+      <div class="calendar--content">
+        <div class="calendar--week">
+          <div class="calendar--week__title">
+            <div class="calendar--week__text">일</div>
+          </div>
+          <div class="calendar--week__title">
+            <div class="calendar--week__text">월</div>
+          </div>
+          <div class="calendar--week__title">
+            <div class="calendar--week__text">화</div>
+          </div>
+          <div class="calendar--week__title">
+            <div class="calendar--week__text">수</div>
+          </div>
+          <div class="calendar--week__title">
+            <div class="calendar--week__text">목</div>
+          </div>
+          <div class="calendar--week__title">
+            <div class="calendar--week__text">금</div>
+          </div>
+          <div class="calendar--week__title">
+            <div class="calendar--week__text">토</div>
+          </div>
+        </div>
+
+        <% for( let i = 0; i < days.length / 7; i++) { %>
+        <div class="calendar--week">
+          <% for ( let j = i * 7; j < (i +1) * 7; j++) { %>
+          <div class="calendar--day">
+            <div class="calendar--day__text"><%= days[j] %></div>
+          </div>
+          <% } %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
