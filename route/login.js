@@ -9,15 +9,12 @@ router.post("/", (req, res, next) => {
   if (session.userid) {
     res.redirect("/");
   } else {
-    console.log('auth');
     user.findOne({ userid: req.body.userid }).then(result => {
         console.dir(result._doc.password);
         console.log(result.password, req.body.password);
       if (result == null) {
-        console.log("r3");
         res.status(401).end();
       } else if (result._doc.password === req.body.password) {
-          console.log('success');
         session.userid = req.body.userid;
         session.password = req.body.password;
         res.redirect("/");

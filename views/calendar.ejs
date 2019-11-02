@@ -13,9 +13,11 @@
         color: #000;
       }
       .calendar {
+        position: relative;
         width: 90%;
         margin: 0 auto;
         margin-top: 20px;
+        top:10%;
       }
       .calendar--nav {
         width: 99.4%;
@@ -63,7 +65,8 @@
       .calendar--day {
         float: left;
         width: 14.2%;
-        padding-bottom: 7.1%;
+        height:12%;
+        /*padding-bottom: 7.1%;*/
         border-left: 1px solid #eaedef;
         border-bottom: 1px solid #eaedef;
         box-sizing: border-box;
@@ -81,6 +84,108 @@
       .calendar--day__off {
         color: #f44e4e;
       }
+
+      .modal { display:none; position: fixed; top:0; left: 0; bottom: 0; right: 0; background-color:rgba(0,0,0,0.3);  }
+      .modal--container {position:absolute; top:20%; left:10%; width:80%; height:50%; background-color: #ffffff; border-radius: 10px/5px;}
+      .modal--header { text-align:right; width: 100%; height: 10%; background-color: #ffffff; }
+      .modal--content { width:100%; height: 80%; background-color: #ffffff;}
+      .modal--footer { width:100%; height:10%; background-color: #ffffff; }
+
+      .modal--header > img {
+        margin:10px;
+      }
+
+
+      .menu {
+        position: absolute;
+        top: 10%;
+        bottom: 10%;
+        left: 0;
+        right: 0;
+        width: 90%;
+        height: 80%;
+        margin: 0 auto;
+        
+      }
+
+      .menu--tab {
+        position: relative;
+        box-sizing: border-box;
+        background: #ffffff;
+        float: left;
+        border-radius: 5px;
+        width: calc(50% - 45px);
+        height: calc(50% - 45px);
+        box-shadow: 5px 5px 15px 2px #000000;
+      }
+
+      .menu--tab > img {
+        margin:10px;
+      }
+
+      .menu--tab__left {
+        margin: 30px 15px 15px 30px;
+      }
+
+      .menu--tab__right {
+        margin: 30px 30px 15px 15px;
+      }
+
+      .darkness {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: #000000;
+        opacity: 0;
+        transition: opacity 2s;
+      }
+
+      .darkness:hover {
+        opacity: 0.1;
+      }
+
+      table { border-collapse: collapse; width:80%; margin: 0 auto; font-size: 0.7em; }
+            th, td {
+                padding:8px 0;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            tr:hover { background-color: #f5f5f5;}
+
+            .content--edit {
+                position: relative;
+                width: 80%;
+                margin: 0 auto;
+                margin-top:20px;
+                margin-bottom: 20px;
+                
+            }
+
+            .content--edit > input {
+                padding:5px;
+            }
+
+            .content--edit > select {
+                padding:5px;
+            }
+
+            .content--edit__button {
+               padding:5px;
+               border:1px solid #cccccc;
+               margin-top:5px;
+               width:10%;
+               font-size:0.6em;
+               text-align: center;
+               transition: background 2s;
+            }
+
+            .content--edit__button:hover {
+              background: #cccccc;
+              cursor: pointer;
+            }
+
     </style>
   </head>
   <body>
@@ -127,5 +232,136 @@
         <% } %>
       </div>
     </div>
+
+    <div class="setting--modal">
+      <div class="modal">
+          <div class="modal--container">
+              <div class="modal--header">
+                  <img src="/assets/images/iconfinder_close16_216470.png">
+              </div>
+  
+              <div class="modal--content">
+                  <div class="content--edit">
+                      <h3>Edit Routine</h3>
+                      <input type="text"/>
+                      <select><option selected>5 Sets</option></select>
+                      <div class="content--edit__button">Add</div>
+                     
+                  </div>
+  
+                  <div class="content--list">
+                      <table>
+                          
+                          <thead>
+                              <tr>
+                                  <th>Check</th>
+                                  <th>Edit</th>
+                                  <th>Delete</th>
+                                  <th>Name</th>
+                                  <th>Sets</th>
+                                  <th>Created</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td><input type="checkbox"/></td>
+                                  <td><img alt="edit" src="/assets/images/iconfinder_pencil-note-write-mark-implement_3209434.png"></td>
+                                  <td><img alt="delete" src="/assets/images/iconfinder_Bin_2202256.png"/></td>
+                                  <td>Push Up</td>
+                                  <td><select><option>1</option></select></td>
+                                  <td>2019</td>
+                              </tr>
+
+                              <tr>
+                                  <td><input type="checkbox"/></td>
+                                  <td><img alt="edit" src="/assets/images/iconfinder_pencil-note-write-mark-implement_3209434.png"></td>
+                                  <td><img alt="delete" src="/assets/images/iconfinder_Bin_2202256.png"/></td>
+                                  <td>Push Up</td>
+                                  <td><select><option>1</option></select></td>
+                                  <td>2019</td>
+                              </tr>
+
+                              <tr>
+                                  <td><input type="checkbox"/></td>
+                                  <td><img alt="edit" src="/assets/images/iconfinder_pencil-note-write-mark-implement_3209434.png"></td>
+                                  <td><img alt="delete" src="/assets/images/iconfinder_Bin_2202256.png"/></td>
+                                  <td>Push Up</td>
+                                  <td><select><option>1</option></select></td>
+                                  <td>2019</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+  
+              <div class="modal--footer">
+                  
+              </div>
+          </div>
+    </div>
+  </div>
+
+    <div class="menu--modal">
+
+    <div class="modal">
+        <div class="modal--container">
+            <div class="modal--header">
+                <img src="/assets/images/iconfinder_close16_216470.png">
+            </div>
+
+            <div class="modal--content">
+                <div class="menu">
+                    <div class="menu--tab menu--tab__left">
+                      <img src="/assets/images/iconfinder_thefreeforty_profile_sheet3_1243691.png">
+                      <div class="darkness"></div>
+                    </div>
+
+                    <div class="menu--tab menu--tab__right">
+                        <img src="/assets/images/iconfinder_dumbbell_1118213.png">
+                      <div class="darkness"></div>
+                    </div>
+
+                    <div class="menu--tab menu--tab__left">
+                      <img src="/assets/images/iconfinder_Configuration-2-01_1976057.png">
+                      <div class="darkness"></div>
+                    </div>
+
+                    <div class="menu--tab menu--tab__right">
+                      <p></p>
+                      <div class="darkness"></div>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="modal--footer">
+                
+            </div>
+        </div>
+    </div>
+  </div>
+
   </body>
+
+  <script>
+  
+    document.querySelector('.calendar--content').addEventListener('click', event=>{
+      console.log(event.target.innerText);
+      document.querySelector('.menu--modal .modal').style.display = 'block';
+    });
+
+    document.querySelector('.menu--modal .modal--header > img').addEventListener('click', function() {
+      document.querySelector('.menu--modal .modal').style.display = 'none';
+    });
+
+    document.querySelector('.setting--modal .modal--header > img').addEventListener('click', function() {
+      document.querySelector('.setting--modal .modal').style.display = 'none';
+    });
+
+    document.querySelector('.menu--modal .modal--content').addEventListener('click', function(event) {
+      document.querySelector('.menu--modal .modal').style.display = 'none';
+      console.dir(event.target.parentNode);
+      document.querySelector('.setting--modal .modal').style.display = 'block';
+    });
+  
+  </script>
 </html>
