@@ -7,10 +7,11 @@ const http = require("http");
 
 const indexRouter = require("./route/index");
 const loginRouter = require("./route/login");
+const excerciseRouter = require("./route/excercise");
 
 mongoose.Promise = global.Promise;
 mongoose
-  .connect("mongodb://rasgo.iptime.org:27017/health_schedule", {
+  .connect("mongodb://rasgo.iptime.org:27017/fitness", {
     useNewUrlParser: true
   })
   .then(() => {
@@ -42,6 +43,7 @@ app.use(
 app.use("*.ico", FaviconHandler);
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
+app.use("/excercises", excerciseRouter);
 
 app.use(ErrorHandler);
 app.use(CatchError);

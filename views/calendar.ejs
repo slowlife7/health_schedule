@@ -12,6 +12,9 @@
           "NanumBarunGothic YetHangul", "새굴림", sans-serif;
         color: #000;
       }
+
+      li { list-style: none; }
+a { text-decoration: none; }
       .calendar {
         position: relative;
         width: 90%;
@@ -86,16 +89,16 @@
       }
 
       .modal { display:none; position: fixed; top:0; left: 0; bottom: 0; right: 0; background-color:rgba(0,0,0,0.3);  }
-      .modal--container {position:absolute; top:20%; left:10%; width:80%; height:50%; background-color: #ffffff; border-radius: 10px/5px;}
+      .modal--container {position:absolute; top:20%; left:10%; width:70%; height:50%; background-color: #ffffff; border-radius: 10px/5px;}
       .modal--header { text-align:right; width: 100%; height: 10%; background-color: #ffffff; }
-      .modal--content { width:100%; height: 80%; background-color: #ffffff;}
-      .modal--footer { width:100%; height:10%; background-color: #ffffff; }
+      .modal--content { width:100%; height: 70%; background-color: #ffffff;}
+      .modal--footer { width:100%; height:20%; background-color: #ffffff; }
 
       .modal--header > img {
         margin:10px;
       }
 
-      .modal--container__large {position:absolute; top:20%; left:10%; width:80%; height:70%; overflow-y: auto; background-color: #ffffff; border-radius: 10px/5px;}
+      .modal--container__large {position:absolute; top:20%; left:10%; width:80%; height:60%; overflow-y: auto; background-color: #ffffff; border-radius: 10px/5px;}
 
       .menu {
         position: absolute;
@@ -146,11 +149,11 @@
         opacity: 0.1;
       }
 
-      .modal { display:none; position: fixed; top:0; left: 0; bottom: 0; right: 0; background-color:rgba(0,0,0,0.3); }
+     /* .modal { display:none; position: fixed; top:0; left: 0; bottom: 0; right: 0; background-color:rgba(0,0,0,0.3); }
             .modal--container {position:absolute; top:20%; left:10%; width:80%; height:50%; background-color: #ffffff;}
             .modal--header { text-align:right; width: 100%; height: 10%; background-color: #ffffff;}
-            .modal--content { width:100%; height: 80%; background-color: #ffffff;}
-            .modal--footer { width:100%; height:10%; background-color: #ffffff; }
+            .modal--content { width:100%; height: 70%; background-color: #ffffff;}
+            .modal--footer { width:100%; height:20%; background-color: #ffffff; } */
 
             table { border-collapse: collapse; width:80%; margin: 0 auto; font-size: 0.7em;}
             th, td {
@@ -191,6 +194,12 @@
                 margin: 0 auto;
                 margin-bottom: 20px;
             }
+
+            .pagination  { text-align: center; margin-top:5%; padding-bottom: 5%;}
+            .pagination ul { display: inline-block; padding-left: 0; text-align: center;}
+            .pagination ul li { display: inline; text-align: center;}
+            .pagination ul li a { font-size:1.2em; padding: 5px 12px; color:dimgray; }
+            .pagination ul li a:hover { color:honeydew; }
     </style>
   </head>
   <body>
@@ -292,6 +301,9 @@
                           </tbody>
                       </table>
                   </div>
+                  <div class="pagination">
+
+                  </div>
               </div>
   
               <div class="modal--footer">
@@ -343,10 +355,89 @@
   </body>
 
   <script>
-  
+  let navURL = "";
+  function httpGetRequest(url, responseType, method, data) {
+      return new Promise((resolve, reject) => {
+          try {
+          const xhr = new XMLHttpRequest();
+          const mth = method || "GET";
+          console.log('mth:',mth);
+          xhr.open(mth, url);
+          (method === 'POST') && xhr.setRequestHeader("Content-Type", "application/json");
+          console.log(url.split("?")[0]);
+          xhr.responseType = responseType || "json";
+          xhr.onerror = event => {
+              reject(`Network error: ${event}`);
+          };
+          xhr.onload = () => {
+              if (xhr.status === 200) {
+             resolve({...xhr.response, url:url.split("?")[0], query : navURL})
+              } else {
+              reject(`XHR load error: ${xhr.statusText}`);
+              }
+          };
+          console.log(data);
+          xhr.send(data);
+          } catch (err) {
+          reject(err.message);
+          }
+      });
+    };
+
+    const wrapContent = document.querySelector('tbody');  
+    const setPostContent = function( json ) {
+        return '<tr> \
+      <td><input type="checkbox"/></td> \
+      <td>'+json.name+'</td> 		\
+      <td>'+json.weight+'</td>		\
+      <td><select><option>'+json.set+'</option></select></td>	\
+      </tr>';
+      }
+
+
+    const paintPosts = function( json ) {
+          wrapContent.innerHTML = "";
+            json.items.forEach((item) => {
+            wrapContent.insertAdjacentHTML('beforeend', setPostContent(item));
+          });
+        }
+
+    const getPageBox = function ( url, arrow) {
+      return '<li> \
+                <a href="#" id="'+url+'">'+arrow+'</a>\
+              </li>';
+    }
+    const paginationContent = document.querySelector( '.pagination' );
+    const paintPagination = function ( json ) {
+        
+          console.dir(json);
+          paginationContent.innerHTML = "";
+
+          const ul = document.createElement('ul');
+          paginationContent.appendChild(ul);
+
+          json.prev && ul.insertAdjacentHTML('beforeend', getPageBox(json.url + '?pageNo='+json.prev+'&'+json.query, '<<'));
+
+          for( let i = json.first; i <= json.last; i++ ) {
+            ul.insertAdjacentHTML('beforeend', getPageBox(json.url + '?pageNo='+i+'&'+json.query, i));
+          }
+
+          json.next && ul.insertAdjacentHTML('beforeend', getPageBox(json.url + '?pageNo='+json.next+'&'+json.query, '>>'));
+    }
+
     document.querySelector('.calendar--content').addEventListener('click', event=>{
       console.log(event.target.innerText);
       document.querySelector('.menu--modal .modal').style.display = 'block';
+
+      httpGetRequest('/excercises')
+        .then( result => {
+          paintPosts(result);
+          paintPagination(result);
+          console.log(result.items);
+        })
+        .catch(err => {
+
+        })
     });
 
     document.querySelector('.menu--modal .modal--header > img').addEventListener('click', function() {
@@ -362,6 +453,10 @@
       console.dir(event.target.parentNode);
       document.querySelector('.setting--modal .modal').style.display = 'block';
     });
+  
+
+   
+
   
   </script>
 </html>
