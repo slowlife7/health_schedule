@@ -13,194 +13,41 @@
         color: #000;
       }
 
-      li { list-style: none; }
-a { text-decoration: none; }
-      .calendar {
-        position: relative;
-        width: 90%;
-        margin: 0 auto;
-        margin-top: 20px;
-        top:10%;
+      li {
+        list-style: none;
       }
-      .calendar--nav {
-        width: 99.4%;
-        height: 50px;
-        line-height: 50px;
-        box-sizing: border-box;
-        border: 1px solid #eaedef;
-      }
-      .calendar--content {
-        box-sizing: border-box;
-        width: 100%;
+      a {
+        text-decoration: none;
       }
 
-      .calendar--month {
+      .pagination {
+        font-size: 0.7em;
+        text-align: center;
+        margin-top: 5%;
+        padding-bottom: 5%;
       }
-      .calendar--month__title {
-        font-size: 22px;
-        font-weight: bold;
-        color: #3c4043;
+      .pagination ul {
+        display: inline-block;
+        padding-left: 0;
         text-align: center;
       }
-
-      .calendar--week {
-        font-size: 14px;
-        font-family: Tahoma;
-        color: #474747;
+      .pagination ul li {
+        display: inline;
+        text-align: center;
       }
-      .calendar--week__title {
-        background-color: #f8f8f8;
-        float: left;
-        width: 14.2%;
-        padding-bottom: 2.3%;
-
-        box-sizing: border-box;
+      .pagination ul li a {
+        font-size: 1.2em;
+        padding: 5px 12px;
+        color: dimgray;
       }
-      .calendar--week__title:last-child {
-        border-right: 1px solid #eaedef;
+      .pagination ul li a:hover {
+        color: honeydew;
       }
-
-      .calendar--week__text {
-        margin-top: 5px;
-        margin-left: 5px;
-      }
-
-      .calendar--day {
-        float: left;
-        width: 14.2%;
-        height:12%;
-        /*padding-bottom: 7.1%;*/
-        border-left: 1px solid #eaedef;
-        border-bottom: 1px solid #eaedef;
-        box-sizing: border-box;
-      }
-
-      .calendar--day__text {
-        margin-top: 5px;
-        margin-left: 5px;
-      }
-
-      .calendar--day:nth-child(7n) {
-        border-right: 1px solid #eaedef;
-      }
-
-      .calendar--day__off {
-        color: #f44e4e;
-      }
-
-      .modal { display:none; position: fixed; top:0; left: 0; bottom: 0; right: 0; background-color:rgba(0,0,0,0.3);  }
-      .modal--container {position:absolute; top:20%; left:10%; width:70%; height:50%; background-color: #ffffff; border-radius: 10px/5px;}
-      .modal--header { text-align:right; width: 100%; height: 10%; background-color: #ffffff; }
-      .modal--content { width:100%; height: 70%; background-color: #ffffff;}
-      .modal--footer { width:100%; height:20%; background-color: #ffffff; }
-
-      .modal--header > img {
-        margin:10px;
-      }
-
-      .modal--container__large {position:absolute; top:20%; left:10%; width:80%; height:60%; overflow-y: auto; background-color: #ffffff; border-radius: 10px/5px;}
-
-      .menu {
-        position: absolute;
-        top: 10%;
-        bottom: 10%; 
-        left: 0;
-        right: 0;
-        width: 90%;
-        height: 80%;
-        margin: 0 auto;    
-      }
-
-      .menu--tab {
-        position: relative;
-        box-sizing: border-box;
-        background: #ffffff;
-        float: left;
-        border-radius: 5px;
-        width: calc(50% - 45px);
-        height: calc(50% - 45px);
-        box-shadow: 5px 5px 15px 2px #000000;
-      }
-
-      .menu--tab > img {
-        margin:10px;
-      }
-
-      .menu--tab__left {
-        margin: 30px 15px 15px 30px;
-      }
-
-      .menu--tab__right {
-        margin: 30px 30px 15px 15px;
-      }
-
-      .darkness {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: #000000;
-        opacity: 0;
-        transition: opacity 2s;
-      }
-
-      .darkness:hover {
-        opacity: 0.1;
-      }
-
-     /* .modal { display:none; position: fixed; top:0; left: 0; bottom: 0; right: 0; background-color:rgba(0,0,0,0.3); }
-            .modal--container {position:absolute; top:20%; left:10%; width:80%; height:50%; background-color: #ffffff;}
-            .modal--header { text-align:right; width: 100%; height: 10%; background-color: #ffffff;}
-            .modal--content { width:100%; height: 70%; background-color: #ffffff;}
-            .modal--footer { width:100%; height:20%; background-color: #ffffff; } */
-
-            table { border-collapse: collapse; width:80%; margin: 0 auto; font-size: 0.7em;}
-            th, td {
-                padding:8px 0;
-                text-align: left;
-                border-bottom: 1px solid #ddd;
-            }
-            tr:hover { background-color: #f5f5f5;}
-
-            .content--edit {
-                position: relative;
-                width: 80%;
-                margin: 0 auto;
-                margin-top:20px;
-                margin-bottom: 20px;
-                
-            }
-
-            .content--edit > input{
-                padding:3px 10px;
-            }
-
-            .content--edit > input{
-                padding:3px 5px;
-            }
-
-            .content--edit > select {
-                padding:3px 2px;
-            }  
-
-            .content--edit > span {
-                
-                padding:3px 3px;
-            }
-
-            .content--button {
-                width: 80%;
-                margin: 0 auto;
-                margin-bottom: 20px;
-            }
-
-            .pagination  { text-align: center; margin-top:5%; padding-bottom: 5%;}
-            .pagination ul { display: inline-block; padding-left: 0; text-align: center;}
-            .pagination ul li { display: inline; text-align: center;}
-            .pagination ul li a { font-size:1.2em; padding: 5px 12px; color:dimgray; }
-            .pagination ul li a:hover { color:honeydew; }
     </style>
+    <link rel="stylesheet" href="/css/excercise.css" />
+    <link rel="stylesheet" href="/css/calendar.css" />
+    <link rel="stylesheet" href="/css/modal.css" />
+    <link rel="stylesheet" href="/css/imgmenu.css" />
   </head>
   <body>
     <div class="calendar">
@@ -247,216 +94,155 @@ a { text-decoration: none; }
       </div>
     </div>
 
-    <div class="setting--modal">
-      <div class="modal">
-          <div class="modal--container__large">
-              <div class="modal--header">
-                  <img src="/assets/images/iconfinder_close16_216470.png">
-              </div>
-  
-              <div class="modal--content">
-                  <div class="content--edit">
-                      <input type="text" placeholder="Name" size="5"/>
-                      <input type="text" placeholder="Weight" size="2"/>
-                      <select><option selected>5 Set</option></select>
-                      <span><img src="/assets/images/iconfinder_outlined_edit_4280532.png"></span>
-                  </div>
-
-                  <div class="content--list">
-                      <div class="content--button">
-                          <img src="/assets/images/iconfinder_158-Save_2123968.png">
-                          <img src="/assets/images/iconfinder_52-Bin_2123879.png">
-                      </div>
-                      <table>
-                          <thead>
-                              <tr>
-                                  <th>Check</th>
-                                  <th>Name</th>
-                                  <th>Weight</th>
-                                  <th>Set</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <td><input type="checkbox"/></td>
-                                  <td>Push Up</td>
-                                  <td>0</td>
-                                  <td><select><option>1</option></select></td>
-                              </tr>
-
-                              <tr>
-                                  <td><input type="checkbox"/></td>
-                                  <td>Push Up</td>
-                                  <td>0</td>
-                                  <td><select><option>1</option></select></td>
-                              </tr>
-
-                              <tr>
-                                  <td><input type="checkbox"/></td>
-                                  <td>Push Up</td>
-                                  <td>0</td>
-                                  <td><select><option>1</option></select></td>
-                                  
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-                  <div class="pagination">
-
-                  </div>
-              </div>
-  
-              <div class="modal--footer">
-                  
-              </div>
-          </div>
-    </div>
-  </div>
-
-    <div class="menu--modal">
-
-    <div class="modal">
-        <div class="modal--container">
-            <div class="modal--header">
-                <img src="/assets/images/iconfinder_close16_216470.png">
-            </div>
-
-            <div class="modal--content">
-                <div class="menu">
-                    <div class="menu--tab menu--tab__left">
-                      <img src="/assets/images/iconfinder_thefreeforty_profile_sheet3_1243691.png">
-                      <div class="darkness"></div>
-                    </div>
-
-                    <div class="menu--tab menu--tab__right">
-                        <img src="/assets/images/iconfinder_dumbbell_1118213.png">
-                      <div class="darkness"></div>
-                    </div>
-
-                    <div class="menu--tab menu--tab__left">
-                      <img src="/assets/images/iconfinder_Configuration-2-01_1976057.png">
-                      <div class="darkness"></div>
-                    </div>
-
-                    <div class="menu--tab menu--tab__right">
-                      <p></p>
-                      <div class="darkness"></div>
-                    </div>
-                  </div>
-            </div>
-
-            <div class="modal--footer">
-                
-            </div>
-        </div>
-    </div>
-  </div>
-
+    <% include excercise %> <% include menu-modal %>
   </body>
 
+  <script src="/javascript/excercise.js"></script>
   <script>
-  let navURL = "";
-  function httpGetRequest(url, responseType, method, data) {
+    let navURL = "";
+    function httpGetRequest(url, responseType, method, data) {
       return new Promise((resolve, reject) => {
-          try {
+        try {
           const xhr = new XMLHttpRequest();
           const mth = method || "GET";
-          console.log('mth:',mth);
+          console.log("mth:", mth);
           xhr.open(mth, url);
-          (method === 'POST') && xhr.setRequestHeader("Content-Type", "application/json");
+          method === "POST" &&
+            xhr.setRequestHeader("Content-Type", "application/json");
           console.log(url.split("?")[0]);
           xhr.responseType = responseType || "json";
           xhr.onerror = event => {
-              reject(`Network error: ${event}`);
+            reject(`Network error: ${event}`);
           };
           xhr.onload = () => {
-              if (xhr.status === 200) {
-             resolve({...xhr.response, url:url.split("?")[0], query : navURL})
-              } else {
+            if (xhr.status === 200) {
+              resolve({
+                ...xhr.response,
+                url: url.split("?")[0],
+                query: navURL
+              });
+            } else {
               reject(`XHR load error: ${xhr.statusText}`);
-              }
+            }
           };
           console.log(data);
           xhr.send(data);
-          } catch (err) {
+        } catch (err) {
           reject(err.message);
-          }
+        }
+      });
+    }
+
+    const wrapContent = document.querySelector("tbody");
+    const setPostContent = function(json) {
+      return (
+        '<tr> \
+      <td><input type="checkbox"/></td> \
+      <td>' +
+        json.name +
+        "</td> 		\
+      <td>" +
+        json.weight +
+        "</td>		\
+      <td><select><option>" +
+        json.set +
+        "</option></select></td>	\
+      </tr>"
+      );
+    };
+
+    const paintPosts = function(json) {
+      console.log("paint posts");
+      wrapContent.innerHTML = "";
+      json.items.forEach(item => {
+        wrapContent.insertAdjacentHTML("beforeend", createRow(item));
       });
     };
 
-    const wrapContent = document.querySelector('tbody');  
-    const setPostContent = function( json ) {
-        return '<tr> \
-      <td><input type="checkbox"/></td> \
-      <td>'+json.name+'</td> 		\
-      <td>'+json.weight+'</td>		\
-      <td><select><option>'+json.set+'</option></select></td>	\
-      </tr>';
-      }
+    const getPage = function(url) {
+      console.log("url:", url);
 
-
-    const paintPosts = function( json ) {
-          wrapContent.innerHTML = "";
-            json.items.forEach((item) => {
-            wrapContent.insertAdjacentHTML('beforeend', setPostContent(item));
-          });
-        }
-
-    const getPageBox = function ( url, arrow) {
-      return '<li> \
-                <a href="#" id="'+url+'">'+arrow+'</a>\
-              </li>';
-    }
-    const paginationContent = document.querySelector( '.pagination' );
-    const paintPagination = function ( json ) {
-        
-          console.dir(json);
-          paginationContent.innerHTML = "";
-
-          const ul = document.createElement('ul');
-          paginationContent.appendChild(ul);
-
-          json.prev && ul.insertAdjacentHTML('beforeend', getPageBox(json.url + '?pageNo='+json.prev+'&'+json.query, '<<'));
-
-          for( let i = json.first; i <= json.last; i++ ) {
-            ul.insertAdjacentHTML('beforeend', getPageBox(json.url + '?pageNo='+i+'&'+json.query, i));
-          }
-
-          json.next && ul.insertAdjacentHTML('beforeend', getPageBox(json.url + '?pageNo='+json.next+'&'+json.query, '>>'));
-    }
-
-    document.querySelector('.calendar--content').addEventListener('click', event=>{
-      console.log(event.target.innerText);
-      document.querySelector('.menu--modal .modal').style.display = 'block';
-
-      httpGetRequest('/excercises')
-        .then( result => {
+      httpGetRequest(url)
+        .then(result => {
           paintPosts(result);
           paintPagination(result);
           console.log(result.items);
         })
-        .catch(err => {
+        .catch(err => {});
+    };
+    const getPageBox = function(url, arrow) {
+      return (
+        '<li> \
+                <a href="javascript:void(0);" onclick=getPage("' +
+        url +
+        '");>' +
+        arrow +
+        "</a>\
+              </li>"
+      );
+    };
+    const paginationContent = document.querySelector(".pagination");
+    const paintPagination = function(json) {
+      console.dir(json);
+      paginationContent.innerHTML = "";
 
-        })
-    });
+      const ul = document.createElement("ul");
+      paginationContent.appendChild(ul);
 
-    document.querySelector('.menu--modal .modal--header > img').addEventListener('click', function() {
-      document.querySelector('.menu--modal .modal').style.display = 'none';
-    });
+      json.prev &&
+        ul.insertAdjacentHTML(
+          "beforeend",
+          getPageBox(json.url + "?pageNo=" + json.prev + "&" + json.query, "<<")
+        );
 
-    document.querySelector('.setting--modal .modal--header > img').addEventListener('click', function() {
-      document.querySelector('.setting--modal .modal').style.display = 'none';
-    });
+      for (let i = json.first; i <= json.last; i++) {
+        ul.insertAdjacentHTML(
+          "beforeend",
+          getPageBox(json.url + "?pageNo=" + i + "&" + json.query, i)
+        );
+      }
 
-    document.querySelector('.menu--modal .modal--content').addEventListener('click', function(event) {
-      document.querySelector('.menu--modal .modal').style.display = 'none';
-      console.dir(event.target.parentNode);
-      document.querySelector('.setting--modal .modal').style.display = 'block';
-    });
-  
+      json.next &&
+        ul.insertAdjacentHTML(
+          "beforeend",
+          getPageBox(json.url + "?pageNo=" + json.next + "&" + json.query, ">>")
+        );
+    };
 
-   
+    document
+      .querySelector(".calendar--content")
+      .addEventListener("click", event => {
+        console.log(event.target.innerText);
+        document.querySelector(".menu--modal .modal").style.display = "block";
 
-  
+        httpGetRequest("/excercises")
+          .then(result => {
+            paintPosts(result);
+            paintPagination(result);
+            console.log(result.items);
+          })
+          .catch(err => {});
+      });
+
+    document
+      .querySelector(".menu--modal .modal--header > img")
+      .addEventListener("click", function() {
+        document.querySelector(".menu--modal .modal").style.display = "none";
+      });
+
+    document
+      .querySelector(".setting--modal .modal--header > img")
+      .addEventListener("click", function() {
+        document.querySelector(".setting--modal .modal").style.display = "none";
+      });
+
+    document
+      .querySelector(".menu--modal .modal--content")
+      .addEventListener("click", function(event) {
+        document.querySelector(".menu--modal .modal").style.display = "none";
+        console.dir(event.target.parentNode);
+        document.querySelector(".setting--modal .modal").style.display =
+          "block";
+      });
   </script>
 </html>

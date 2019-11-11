@@ -1,0 +1,48 @@
+.menu {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  width: 90%;
+  height: 80%;
+  margin: 0 auto;
+}
+
+.menu--tab {
+  position: relative;
+  box-sizing: border-box;
+  background: #ffffff;
+  float: left;
+  border-radius: 5px;
+  width: calc(50% - 45px);
+  height: calc(50% - 45px);
+  box-shadow: 5px 5px 15px 2px #000000;
+}
+
+.menu--tab > img {
+  margin: 10px;
+}
+
+.menu--tab__left {
+  margin: 30px 15px 15px 30px;
+}
+
+.menu--tab__right {
+  margin: 30px 30px 15px 15px;
+}
+
+.darkness {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #000000;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+.darkness:hover {
+  opacity: 0.1;
+}

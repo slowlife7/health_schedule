@@ -1,0 +1,72 @@
+table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-size: 0.7em;
+}
+
+thead th {
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #cccccc;
+  text-align: left;
+  margin-right: 5%;
+}
+
+td {
+  vertical-align: top;
+  padding: 1% 2% 1% 0;
+  border-bottom: 1px solid #cccccc;
+}
+
+th:first-child,
+td:first-child {
+  padding-left: 2%;
+}
+
+/*div:nth-child(1) {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 2%;
+} */
+
+/*table ~ div {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 2%;
+} */
+
+.td--text {
+  width: 70%;
+  border: 0;
+  box-shadow: none;
+  background-color: transparent;
+  margin-left: 3%;
+}
+
+.td--number {
+  width: 30%;
+  border: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.td--checkbox {
+  margin-right: 1%;
+  margin-left: 1%;
+}
+
+.td--text:focus,
+.td--number:focus {
+  outline: none;
+}
+
+.td--text__none {
+  display: none;
+}
+
+.content--button {
+  width: 77%;
+  margin: 0 auto;
+  margin-top: 2%;
+}
