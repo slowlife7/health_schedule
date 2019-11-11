@@ -227,6 +227,7 @@
     document
       .querySelector(".menu--modal .modal--header > img")
       .addEventListener("click", function() {
+        console.log('modal1');
         document.querySelector(".menu--modal .modal").style.display = "none";
       });
 
@@ -239,8 +240,8 @@
     document
       .querySelector(".menu--modal .modal--content")
       .addEventListener("click", function(event) {
+        console.dir(event.target);
         document.querySelector(".menu--modal .modal").style.display = "none";
-        console.dir(event.target.parentNode);
         document.querySelector(".setting--modal .modal").style.display =
           "block";
       });

@@ -19,11 +19,7 @@ td {
   border-bottom: 1px solid #cccccc;
 }
 
-th:first-child,
-td:first-child {
-  padding-left: 2%;
-  padding-right: 3%;
-}
+
 
 .td--text {
   width: 70%;
@@ -58,4 +54,5 @@ td:first-child {
   width: 77%;
   margin: 0 auto;
   margin-top: 2%;
+  margin-bottom: 5%;
 }
