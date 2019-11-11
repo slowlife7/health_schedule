@@ -15,26 +15,15 @@ thead th {
 
 td {
   vertical-align: top;
-  padding: 1% 2% 1% 0;
+  padding: 1% 0 1% 0;
   border-bottom: 1px solid #cccccc;
 }
 
 th:first-child,
 td:first-child {
   padding-left: 2%;
+  padding-right: 3%;
 }
-
-/*div:nth-child(1) {
-  width: 80%;
-  margin: 0 auto;
-  margin-bottom: 2%;
-} */
-
-/*table ~ div {
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 2%;
-} */
 
 .td--text {
   width: 70%;
