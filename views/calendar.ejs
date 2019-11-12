@@ -94,7 +94,10 @@
       </div>
     </div>
 
-    <% include excercise %> <% include menu-modal %>
+    <% include excercise %>
+    <% include record %>
+    <% include setting %>
+    <% include menu-modal %>
   </body>
 
   <script src="/javascript/excercise.js"></script>
@@ -237,13 +240,38 @@
         document.querySelector(".setting--modal .modal").style.display = "none";
       });
 
+      document
+      .querySelector(".excercise--modal .modal--header > img")
+      .addEventListener("click", function() {
+        document.querySelector(".excercise--modal .modal").style.display = "none";
+      });
+
+      document
+      .querySelector(".record--modal .modal--header > img")
+      .addEventListener("click", function() {
+        document.querySelector(".record--modal .modal").style.display = "none";
+      });
+
     document
       .querySelector(".menu--modal .modal--content")
       .addEventListener("click", function(event) {
         console.dir(event.target);
-        document.querySelector(".menu--modal .modal").style.display = "none";
-        document.querySelector(".setting--modal .modal").style.display =
-          "block";
+
+        const selected = event.target.classList[0];
+        if(selected === 'setting') {
+          document.querySelector(".menu--modal .modal").style.display = "none";
+          document.querySelector(".setting--modal .modal").style.display =
+            "block";
+        } else if(selected === 'excercise') {
+          document.querySelector(".menu--modal .modal").style.display = "none";
+          document.querySelector(".excercise--modal .modal").style.display =
+            "block";
+        } else if(selected === 'record') {
+          document.querySelector(".menu--modal .modal").style.display = "none";
+          document.querySelector(".record--modal .modal").style.display =
+            "block";
+        }
+
       });
   </script>
 </html>
