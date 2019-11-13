@@ -5,6 +5,7 @@ const flash = require("connect-flash");
 const indexRouter = require("./route/index");
 const loginRouter = require("./route/login");
 const excerciseRouter = require("./route/excercise");
+const recordRouter = require("./route/record");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("*.ico", FaviconHandler);
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/excercises", excerciseRouter);
+app.use("/records", recordRouter);
 
 app.use(ErrorHandler);
 app.use(CatchError);

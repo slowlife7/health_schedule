@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="/css/calendar.css" />
     <link rel="stylesheet" href="/css/modal.css" />
     <link rel="stylesheet" href="/css/imgmenu.css" />
+    <link rel="stylesheet" href="/css/record.css"/>
   </head>
   <body>
     <div class="calendar">
@@ -212,6 +213,34 @@
         );
     };
 
+    const onclick = function(event) {
+            if(event.target.className !== 'add') {
+                return false;
+            }
+            console.log('add');
+        }
+
+        const createRowRecord = function(json, fn) {
+            const li = document.createElement('li');
+            li.addEventListener('click', fn);
+
+            const nameCell = `<div class="name"><p><span>${json.name}</sapn></p></div></<div>`;
+            const repsCell = `<div class="reps"><span><input type="text" name="reps" class="reps" maxlength="${json.set}" size="${json.set}" placeholder="REPS" />\
+                                <button class="add">add</button></span></div>`;
+            const weightCell = `<div class="weight"><p><span>${json.weight}</span></p></div>`;
+
+            li.insertAdjacentHTML('beforeend',nameCell);
+            li.insertAdjacentHTML('beforeend',repsCell);
+            li.insertAdjacentHTML('beforeend',weightCell);
+            return li;
+        }
+
+        const tag = createRowRecord({
+            name:'push up',
+            set: 5,
+            weight: 0
+        }, onclick);
+
     document
       .querySelector(".calendar--content")
       .addEventListener("click", event => {
@@ -252,6 +281,23 @@
         document.querySelector(".record--modal .modal").style.display = "none";
       });
 
+
+      document.querySelector('ul')
+    .addEventListener('keydown', function(event) {
+        if(event.target.className === 'reps') {
+            const key = event.charCode || event.keyCode || 0;
+
+            if (key !== 8 && key !== 9) {
+                if (event.target.value.length >= event.target.maxLength - 1) return;
+
+                if ((event.target.value.length + 1) % 3 === 0) {
+                    event.target.value += "/";
+                }
+            }
+        }
+        return false;
+    });
+
     document
       .querySelector(".menu--modal .modal--content")
       .addEventListener("click", function(event) {
@@ -270,8 +316,30 @@
           document.querySelector(".menu--modal .modal").style.display = "none";
           document.querySelector(".record--modal .modal").style.display =
             "block";
+          
+            fetch("/records")
+          .then(result => {
+            return result.json();
+          })
+          .then(json => {
+
+            document.querySelector('.modal--content > ul').innerHTML = "";
+              json.forEach(item=> {
+                const tag = createRowRecord({
+                  name:item.name,
+                  set:(item.set*2 + item.set-1),
+                  weight:item.weight
+              });
+              document.querySelector('.modal--content > ul').appendChild(tag);
+              });
+          })
+          .catch(err => {});
+          
         }
 
       });
+
+    
+
   </script>
 </html>

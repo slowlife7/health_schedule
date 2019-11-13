@@ -1,0 +1,41 @@
+li {
+    margin-bottom: 20px;
+  }
+
+  .name::before {
+    content: "NAME";
+    float: left;
+    margin: 0 20px;
+    border-left:3px solid #cccccc;
+  }
+
+  .reps::before {
+    content: "REPS";
+    float: left;
+    margin: 0 20px;
+    border-left:3px solid #cccccc;
+  }
+
+  .weight::before {
+    content: "WEIGHT";
+    float: left;
+    margin: 0 20px;
+    border-left:3px solid #cccccc;
+  }
+
+  .name span {
+      margin-left: 40px;
+  }
+
+  .reps span {
+      margin-left: 20px;
+  }
+
+  .weight span {
+      margin-left: 40px;
+  }
+
+  .modal--content > ul {
+      width:80%;
+      margin:0 auto;
+  }
