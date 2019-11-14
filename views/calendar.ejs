@@ -102,6 +102,8 @@
   <script src="/javascript/excercise.js"></script>
   <script>
     let navURL = "";
+    let currentDate = "";
+    let currentDay = "";
     function httpGetRequest(url, responseType, method, data) {
       return new Promise((resolve, reject) => {
         try {
@@ -240,7 +242,12 @@
     document
       .querySelector(".calendar--content")
       .addEventListener("click", event => {
-        console.log(event.target.innerText);
+    
+        currentDate = document.querySelector('.calendar--month__title').innerText;
+        currentDay = event.target.innerText;
+        console.log(document.querySelector('.calendar--month__title').innerText+'.'+event.target.innerText);
+        //console.log(calendar--month__title);
+
         document.querySelector(".menu--modal .modal").style.display = "block";
 
         httpGetRequest("/excercises")
@@ -313,7 +320,7 @@
           document.querySelector(".record--modal .modal").style.display =
             "block";
 
-          fetch("/records")
+          fetch("/excercises/pick")
             .then(result => {
               return result.json();
             })
@@ -329,6 +336,20 @@
                   .querySelector(".modal--content .record")
                   .appendChild(tag);
               });
+
+          
+              const start = new Date(currentDate+'.'+currentDay);
+              const end =  new Date(currentDate+'.'+((Number)(currentDay)+1));
+            
+              const recordURL = `/records?start='${start}'&end='${end}'`;
+              fetch(recordURL)
+              .then(result => {
+                return result.json();
+              })
+              .then(json=>{
+                console.log(json);
+              })
+
             })
             .catch(err => {});
         }

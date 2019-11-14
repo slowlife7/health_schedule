@@ -1,19 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const record = require("../model/record");
-const excercise = require("../model/excercise");
 
 router.get('/', (req, res, next)=>{
     const userid = req.session.userid;
     if (!userid) return res.status(401).end();
 
-    excercise.find({userid:userid, pick:true}, {pick:false, created:false, updated:false, __v:false, _id:false})
-    .then(result=>{
+    const start = req.query.start; //2019-11-14
+    const end = req.query.end;      //2019-11-15
+    if(!start || !end) return res.status(400).end();
+
+    record.find({userid:userid, conductedAt: { "$gte": start, "$lt": end }})
+    .then(result => {
         res.json(result);
-    })
-    .catch(err=>{
-        res.status(500).end();
-    })
+    });
 });
 
 router.post('/', (req, res, next)=>{

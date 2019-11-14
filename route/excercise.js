@@ -42,6 +42,19 @@ router.get("/", (req, res, next) => {
     });
 });
 
+router.get('/pick', function(req, res) {
+  const userid = req.session.userid;
+  if (!userid) return res.status(401).end();
+
+  excercise.find({userid:userid, pick:true}, {pick:false, created:false, updated:false, __v:false, _id:false})
+  .then(result=>{
+      res.json(result);
+  })
+  .catch(err=>{
+      res.status(500).end();
+  })
+});
+
 router.post("/", function(req, res) {
   let body = req.body;
   const userid = req.session.userid;
