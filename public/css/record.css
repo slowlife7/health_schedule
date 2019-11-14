@@ -1,41 +1,48 @@
-li {
-    margin-bottom: 20px;
-  }
+.wrapper {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+}
 
-  .name::before {
-    content: "NAME";
-    float: left;
-    margin: 0 20px;
-    border-left:3px solid #cccccc;
-  }
+.record {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+}
 
-  .reps::before {
-    content: "REPS";
-    float: left;
-    margin: 0 20px;
-    border-left:3px solid #cccccc;
-  }
+.name,
+.reps,
+.weight {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  margin-bottom: 2px;
+}
 
-  .weight::before {
-    content: "WEIGHT";
-    float: left;
-    margin: 0 20px;
-    border-left:3px solid #cccccc;
-  }
+.record input {
+  font-size: 1.2em;
+  width: 100%;
+  height: 24px;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 6px;
+  text-align: center;
+  padding-right: 24px;
+}
 
-  .name span {
-      margin-left: 40px;
-  }
+.record input:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #cccccc;
+}
 
-  .reps span {
-      margin-left: 20px;
-  }
+.record img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 24px;
+}
 
-  .weight span {
-      margin-left: 40px;
-  }
-
-  .modal--content > ul {
-      width:80%;
-      margin:0 auto;
-  }
+.reps {
+  margin-bottom: 10px;
+}
