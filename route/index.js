@@ -15,7 +15,8 @@ router.get("/", (req, res, next) => {
       year: date.getFullYear(),
       month: date.getMonth() + 1
     });
-    res.render("calendar", { title: dateString, days: cal.days });
+
+    res.render("calendar", { title: dateString, days: cal.days, start:cal.startIndex, end:cal.days.length - 1 });
   }
 });
 

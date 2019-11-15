@@ -43,6 +43,18 @@
       .pagination ul li a:hover {
         color: honeydew;
       }
+      .hidden {
+        display:none;
+      }
+
+      .circle {
+        background-color: lightcoral;
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+        margin: 2px;
+      }
+
     </style>
     <link rel="stylesheet" href="/css/setting.css" />
     <link rel="stylesheet" href="/css/calendar.css" />
@@ -56,6 +68,8 @@
       <div class="calendar--nav">
         <div class="calendar--month">
           <div class="calendar--month__title"><%= title %></div>
+
+          <div class="hidden"><%= start %>-<%= end %></div>
         </div>
       </div>
 
@@ -247,6 +261,19 @@
         })
         .then(json => {
           console.log(json);
+
+          const hidden = document.querySelector('.hidden').innerText;
+          const indexs = hidden.split('-');
+          const start = parseInt(indexs[0]);
+
+          const calendarArr = document.querySelectorAll('.calendar--day__text');
+          const date = new Date(json.conductedAt);
+          const completed = (date.getDate() + start -1);
+          const parent = calendarArr[completed].parentElement;
+          const div = document.createElement('div');
+          div.className = 'circle';
+          parent.appendChild(div);
+
         });
     };
 
@@ -311,12 +338,15 @@
       .addEventListener("click", function() {
         document.querySelector(".excercise--modal .modal").style.display =
           "none";
+     
+    
       });
 
     document
       .querySelector(".record--modal .modal--header > img")
       .addEventListener("click", function() {
         document.querySelector(".record--modal .modal").style.display = "none";
+      
       });
 
     const createRowView = function(json) {
@@ -396,6 +426,9 @@
               });
             });
         } else if (selected === "record") {
+
+          
+
           document.querySelector(".menu--modal .modal").style.display = "none";
           document.querySelector(".record--modal .modal").style.display =
             "block";
@@ -423,5 +456,36 @@
             .catch(err => {});
         }
       });
+
+      
+      currentDate = document.querySelector(".calendar--month__title")
+          .innerText;
+      const hidden = document.querySelector('.hidden').innerText;
+        const indexs = hidden.split('-');
+        const start = parseInt(indexs[0]);
+        const end = parseInt(indexs[1]);
+        console.log('aaaaaa');
+       const calendarArr = document.querySelectorAll('.calendar--day__text');
+        const startDay = currentDate+'.'+calendarArr[start].innerText;
+        const endDay = currentDate+'.'+calendarArr[end].innerText;
+
+        console.log('start:',startDay);
+        console.log('end:',endDay);
+        const url = `/records?start='${startDay}'&end='${endDay}'`;
+     
+
+        fetch(url)
+        .then(response=>response.json())
+        .then(json=>{
+          json.forEach(item=>{
+            const date = new Date(item.conductedAt);
+            const completed = (date.getDate() + start -1);
+            const parent = calendarArr[completed].parentElement;
+            const div = document.createElement('div');
+            div.className = 'circle';
+            parent.appendChild(div);
+          })
+        })
+
   </script>
 </html>
