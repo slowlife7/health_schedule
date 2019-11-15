@@ -11,7 +11,7 @@
   box-sizing: border-box;
   border-radius: 6px;
   text-align: center;
-  padding-right: 24px;
+  padding-left: 24px;
 }
 .excercise input:focus {
   outline: none;

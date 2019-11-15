@@ -9,8 +9,11 @@ router.post("/", (req, res, next) => {
     res.redirect("/");
   } else {
     user.findOne({ userid: req.body.userid }).then(result => {
-      console.dir(result._doc.password);
+     
       console.log(result.password, req.body.password);
+
+      
+
       if (result == null) {
         res.status(401).end();
       } else if (result._doc.password === req.body.password) {
