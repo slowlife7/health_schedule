@@ -1,58 +1,26 @@
-table {
-  width: 80%;
-  margin: 0 auto;
-  border-collapse: collapse;
-  font-size: 0.7em;
+.excercise {
+  position: absolute;
+  left: 10%;
+  right: 10%;
 }
-
-thead th {
-  font-weight: bold;
-  vertical-align: top;
-  border-bottom: 1px solid #cccccc;
-  text-align: left;
-  margin-right: 5%;
+.excercise input {
+  font-size: 1.2em;
+  width: 100%;
+  height: 24px;
+  border: 1px solid #cccccc;
+  box-sizing: border-box;
+  border-radius: 6px;
+  text-align: center;
+  padding-right: 24px;
 }
-
-td {
-  vertical-align: top;
-  padding: 1% 0 1% 0;
-  border-bottom: 1px solid #cccccc;
-}
-
-
-
-.td--text {
-  width: 70%;
-  border: 0;
-  box-shadow: none;
-  background-color: transparent;
-  margin-left: 3%;
-}
-
-.td--number {
-  width: 30%;
-  border: 0;
-  box-shadow: none;
-  background-color: transparent;
-}
-
-.td--checkbox {
-  margin-right: 1%;
-  margin-left: 1%;
-}
-
-.td--text:focus,
-.td--number:focus {
+.excercise input:focus {
   outline: none;
+  box-shadow: 0 0 0 1px #cccccc;
 }
 
-.td--text__none {
-  display: none;
-}
-
-.content--button {
-  width: 77%;
-  margin: 0 auto;
-  margin-top: 2%;
-  margin-bottom: 5%;
+.excercise img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
 }

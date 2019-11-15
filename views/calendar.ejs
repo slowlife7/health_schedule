@@ -44,11 +44,12 @@
         color: honeydew;
       }
     </style>
-    <link rel="stylesheet" href="/css/excercise.css" />
+    <link rel="stylesheet" href="/css/setting.css" />
     <link rel="stylesheet" href="/css/calendar.css" />
     <link rel="stylesheet" href="/css/modal.css" />
     <link rel="stylesheet" href="/css/imgmenu.css" />
     <link rel="stylesheet" href="/css/record.css" />
+    <link rel="stylesheet" href="/css/excercise.css" />
   </head>
   <body>
     <div class="calendar">
@@ -214,10 +215,39 @@
     };
 
     const onclick = function(event) {
-      if (event.target.className !== "add") {
-        return false;
+      if (event.target.nodeName !== "IMG") return false;
+
+      const parent = event.target.parentElement;
+      const pparent = parent.parentElement;
+      let sendJson = {};
+      for (let i = 0; i < pparent.children.length; i++) {
+        const json = {};
+        json[pparent.children[i].className] =
+          pparent.children[i].firstElementChild.value;
+        sendJson = { ...sendJson, ...json };
       }
-      console.log("add");
+
+      sendJson.reps = sendJson.reps.split("/").map(item => {
+        return parseInt(item);
+      });
+
+      console.log();
+      sendJson.conductedAt = `"${currentDate}.${currentDay}"`;
+      console.log(sendJson);
+
+      fetch("/records", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(sendJson)
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(json => {
+          console.log(json);
+        });
     };
 
     const createRowRecord = function(json, fn) {
@@ -242,10 +272,14 @@
     document
       .querySelector(".calendar--content")
       .addEventListener("click", event => {
-    
-        currentDate = document.querySelector('.calendar--month__title').innerText;
+        currentDate = document.querySelector(".calendar--month__title")
+          .innerText;
         currentDay = event.target.innerText;
-        console.log(document.querySelector('.calendar--month__title').innerText+'.'+event.target.innerText);
+        console.log(
+          document.querySelector(".calendar--month__title").innerText +
+            "." +
+            event.target.innerText
+        );
         //console.log(calendar--month__title);
 
         document.querySelector(".menu--modal .modal").style.display = "block";
@@ -285,6 +319,26 @@
         document.querySelector(".record--modal .modal").style.display = "none";
       });
 
+    const createRowView = function(json) {
+      const div = document.createElement("div");
+      div.className = "record--view";
+
+      const name = `<div class="name"><input type="text" readonly placeholder="NAME" value=${json.name}>\
+                    <img src="/assets/images/iconmonstr-tag-1-24.png"/></div>`;
+      const weight = `<div class="weight"><input type="text" readonly placeholder="WEIGHT" value="${json.weight} KG">\
+                        <img src="/assets/images/iconmonstr-tag-1-24.png" alt="tag" /> \
+                      </div>`;
+      const reps = ` <div class="reps"> \
+          <input type="text" readonly placeholder="REPS" value=${json.reps}> \
+          <img src="/assets/images/iconmonstr-tag-1-24.png" alt="add" /> \
+        </div>`;
+
+      div.insertAdjacentHTML("beforeend", name);
+      div.insertAdjacentHTML("beforeend", weight);
+      div.insertAdjacentHTML("beforeend", reps);
+      return div;
+    };
+
     document
       .querySelector(".record")
       .addEventListener("keydown", function(event) {
@@ -315,6 +369,32 @@
           document.querySelector(".menu--modal .modal").style.display = "none";
           document.querySelector(".excercise--modal .modal").style.display =
             "block";
+
+          const start = currentDate + "." + currentDay;
+          const end = currentDate + "." + (parseInt(currentDay) + 1);
+
+          const url = `/records?start='${start}'&end='${end}'`;
+
+          fetch(url)
+            .then(response => response.json())
+            .then(json => {
+              console.log(json);
+              document.querySelector(".excercise").innerHTML = "";
+              json.forEach(item => {
+                console.dir(item);
+                const tag = createRowView({
+                  name: item.excercises.name,
+                  reps: item.excercises.reps.reduce(function(acc, cur, arr) {
+                    acc = acc + "/" + cur;
+                    console.log("acc:", acc);
+                    return acc;
+                  }),
+                  weight: item.excercises.weight
+                });
+
+                document.querySelector(".excercise").appendChild(tag);
+              });
+            });
         } else if (selected === "record") {
           document.querySelector(".menu--modal .modal").style.display = "none";
           document.querySelector(".record--modal .modal").style.display =
@@ -327,29 +407,18 @@
             .then(json => {
               document.querySelector(".modal--content .record").innerHTML = "";
               json.forEach(item => {
-                const tag = createRowRecord({
-                  name: item.name,
-                  set: item.set * 2 + item.set - 1,
-                  weight: item.weight
-                });
+                const tag = createRowRecord(
+                  {
+                    name: item.name,
+                    set: item.set * 2 + item.set - 1,
+                    weight: item.weight
+                  },
+                  onclick
+                );
                 document
                   .querySelector(".modal--content .record")
                   .appendChild(tag);
               });
-
-          
-              const start = new Date(currentDate+'.'+currentDay);
-              const end =  new Date(currentDate+'.'+((Number)(currentDay)+1));
-            
-              const recordURL = `/records?start='${start}'&end='${end}'`;
-              fetch(recordURL)
-              .then(result => {
-                return result.json();
-              })
-              .then(json=>{
-                console.log(json);
-              })
-
             })
             .catch(err => {});
         }

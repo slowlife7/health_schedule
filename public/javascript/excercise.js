@@ -148,7 +148,7 @@ document.querySelector("#delete").addEventListener("click", function(event) {
 
 const createRow = function(json) {
   let options = "";
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 10; i++) {
     if (i + 1 == json.set) {
       options += "<option selected>" + (i + 1) + "</option>";
     } else {
