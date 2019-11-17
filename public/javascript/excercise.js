@@ -66,20 +66,15 @@ document.querySelector("#save").addEventListener("click", function() {
         return response.json();
       })
       .then(json => {
-        /*const tableBody = document.querySelector("table tbody");
-        tableBody.innerHTML = "";
-        if (json instanceof Array) {
-          json.forEach(element => {
-            console.dir(element);
-            tableBody.insertAdjacentHTML("beforeend", createRow(element));
-          });
-        }*/
-
         json.url = "/excercises";
         console.log("json:", json);
         paintPosts(json);
         paintPagination(json);
       });
+
+      document.querySelector(".all").value = false;
+      document.querySelector(".all").checked = false;
+
   });
 });
 
@@ -209,9 +204,15 @@ const pick = function(event) {
   }
 };
 
-document
-  .querySelector("#delete")
-  .addEventListener("click", function(target) {});
+const onChangedPick = function(event) {
+  console.dir(event);
+  if (!event) {
+    return;
+  }
+  
+  event.value = event.checked;
+  console.log('v:',event.value);
+}
 
 document.querySelector("#add").addEventListener("click", function(target) {
   const tableBody = document.querySelector("table tbody");
@@ -247,6 +248,7 @@ document.querySelector("#add").addEventListener("click", function(target) {
           type="checkbox"\
           name="pick"\
           value="false"\
+          onchange="onChangedPick(this)"\
         />\
       </td>\
     </tr>'
@@ -260,7 +262,7 @@ document
     if (!target || target.nodeName !== "SELECT") {
       return;
     }
-    console.log(target);
+    console.log('c:',target);
     const value = target.previousElementSibling;
     value.value = target.value;
   });
