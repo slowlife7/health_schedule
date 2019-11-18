@@ -6,6 +6,7 @@ const indexRouter = require("./route/index");
 const loginRouter = require("./route/login");
 const excerciseRouter = require("./route/excercise");
 const recordRouter = require("./route/record");
+const signupRouter = require("./route/signup");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/excercises", excerciseRouter);
 app.use("/records", recordRouter);
+app.use("/signup", signupRouter);
 
 app.use(ErrorHandler);
 app.use(CatchError);
