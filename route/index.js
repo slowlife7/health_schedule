@@ -18,9 +18,6 @@ router.get("/", (req, res, next) => {
       month: date.getMonth() + 1
     });
 
-<<<<<<< Updated upstream
-    res.render("calendar", { title: dateString, days: cal.days, start:cal.startIndex, end:cal.days.length - 1 });
-=======
     console.log(cal.days);
 
     const start = `"${dateString}.${cal.days[cal.startIndex]}"`;
@@ -45,14 +42,21 @@ router.get("/", (req, res, next) => {
         }
 
         console.dir(completedDays);
+        console.log(dateString);
+        console.log(cal.days);
+
+        console.warn('s:',cal.startIndex);
+        console.warn('e:', cal.days[cal.days.length - 1]);
+
         res.render("calendar", {
           title: dateString,
           days: cal.days,
-          complete: completedDays
+          start: cal.startIndex,
+          end: cal.days.length - 1
+          //complete: completedDays
         });
       });
->>>>>>> Stashed changes
-  }
+    }
 });
 
 module.exports = router;

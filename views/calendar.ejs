@@ -461,7 +461,9 @@
       
       currentDate = document.querySelector(".calendar--month__title")
           .innerText;
+          console.log(currentDate);
       const hidden = document.querySelector('.hidden').innerText;
+      console.log('hi:',hidden);
         const indexs = hidden.split('-');
         const start = parseInt(indexs[0]);
         const end = parseInt(indexs[1]);
