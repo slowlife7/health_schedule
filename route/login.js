@@ -10,6 +10,7 @@ router.post("/", (req, res, next) => {
   } else {
     user.findOne({ userid: req.body.userid }).then(result => {
      
+      console.dir(result);
       console.log(result.password, req.body.password);
 
       

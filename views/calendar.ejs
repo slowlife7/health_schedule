@@ -463,20 +463,18 @@
           .innerText;
           console.log(currentDate);
       const hidden = document.querySelector('.hidden').innerText;
-      console.log('hi:',hidden);
+   
         const indexs = hidden.split('-');
         const start = parseInt(indexs[0]);
         const end = parseInt(indexs[1]);
-        console.log('aaaaaa');
+      
        const calendarArr = document.querySelectorAll('.calendar--day__text');
         const startDay = currentDate+'.'+calendarArr[start].innerText;
         const endDay = currentDate+'.'+calendarArr[end].innerText;
 
-        console.log('start:',startDay);
-        console.log('end:',endDay);
+    
         const url = `/records?start='${startDay}'&end='${endDay}'`;
      
-
         fetch(url)
         .then(response=>response.json())
         .then(json=>{
